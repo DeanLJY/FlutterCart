@@ -1,0 +1,61 @@
+{
+    "type": "Cart",
+    "id": "27b39077-aa57-48a5-b504-914f68fa44dc",
+    "version": 1,
+    "createdAt": "2023-01-23T13:06:28.569Z",
+    "lastModifiedAt": "2023-01-23T13:06:28.569Z",
+    "lastModifiedBy": {
+      "isPlatformClient": false,
+      "userId": "user123",
+      "username": "john_doe"
+    },
+    "createdBy": {
+      "isPlatformClient": false,
+      "userId": "user456",
+      "username": "jane_smith"
+    },
+    "lineItems": [],
+    "cartState": "Active",
+    "totalPrice": {
+      "type": "centPrecision",
+      "currencyCode": "US",
+      "centAmount": 0,
+      "fractionDigits": 2,
+      "tax": {"type": "percentage", "percentage": 10}
+    },
+    "shippingMode": "Multiple",
+    "itemShippingAddresses": [
+      {
+        "itemId": "item123",
+        "address": {
+          "street": "123 Main St",
+          "city": "Cityville",
+          "postalCode": "12345",
+          "country": "Countryland"
+        }
+      },
+      {
+        "itemId": "item456",
+        "address": {
+          "street": "789 Oak St",
+          "city": "Townsville",
+          "postalCode": "67890",
+          "country": "Countryland"
+        }
+      },
+      {
+        "itemId": "item789",
+        "address": {
+          "street": "456 Pine St",
+          "city": "Villageton",
+          "postalCode": "56789",
+          "country": "Countryland"
+        }
+      }
+    ],
+    "inventoryMode": "None",
+    "taxMode": "Platform",
+    "taxRoundingMode": "HalfEven",
+    "taxCalculationMode": "LineItemLevel",
+    "origin": "Customer"
+  }
