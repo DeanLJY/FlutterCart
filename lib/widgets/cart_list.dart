@@ -18,7 +18,7 @@ class ListCartItems extends StatelessWidget {
     return ValueListenableBuilder<Box<CartModel>>(
       valueListenable: CartController().cartListenable,
       builder: (context, box, child) {
-        if (box != null && box.isNotEmpty) {
+        if (box.isNotEmpty) {
           return ListView.builder(
             itemCount: box.length,
             itemBuilder: (context, cartIndex) {
