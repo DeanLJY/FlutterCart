@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:flutter_cart/controller/services/cart_controller.dart';
+import 'package:flutter_cart/controller/cart_controller.dart';
 import 'package:flutter_cart/model/cart_model.dart';
 
 class ListCartItems extends StatelessWidget {
-  final Widget Function({required LineItems data}) cartTileWidget;
+  final Widget Function({required FlutterCartItem data})
+      cartTileWidget;
   final Widget showEmptyCartMsgWidget;
 
   const ListCartItems({
@@ -15,24 +16,18 @@ class ListCartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box<CartModel>>(
+    return ValueListenableBuilder<Box<FlutterCartItem>>(
       valueListenable: CartController().cartListenable,
       builder: (context, box, child) {
         if (box.isNotEmpty) {
           return ListView.builder(
             itemCount: box.length,
             itemBuilder: (context, cartIndex) {
-              var cart = box.getAt(cartIndex);
-              if (cart != null &&
-                  cart.lineItems != null &&
-                  cart.lineItems!.isNotEmpty) {
+              var cartItem = box.getAt(cartIndex);
+              if (cartItem != null) {
                 return Column(
                   children: [
-                    for (var data in cart.lineItems!)
-                      cartTileWidget(data: data),
-                    const SizedBox(
-                      height: 126,
-                    ),
+                    cartTileWidget(data: cartItem),
                   ],
                 );
               } else {
