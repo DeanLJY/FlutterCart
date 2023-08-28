@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_cart/model/cart_model.dart';
 
 class CartController {
+
   final Box<FlutterCartItem> _cartBox =
       Hive.box<FlutterCartItem>('cartBox');
 

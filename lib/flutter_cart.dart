@@ -80,7 +80,8 @@ class FlutterCart {
     );
   }
 
-  Widget showCartItemCountWidget({required Widget Function(int itemCount) cartItemCountWidgetBuilder}) {
+  Widget showCartItemCountWidget(
+      {required Widget Function(int itemCount) cartItemCountWidgetBuilder}) {
     return ValueListenableBuilder<Box<FlutterCartItem>>(
       valueListenable: CartController().cartListenable,
       builder: (context, box, child) {

@@ -1,6 +1,6 @@
 name: flutter_cart
 description: "Effortlessly manage and persist shopping cart data in your Flutter app with this comprehensive package. Simplify local storage and enhance the shopping experience for your users."
-version: 0.0.1
+version: 0.0.4
 homepage: https://github.com/falloutone/fluttercart
 
 environment:
@@ -28,8 +28,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/
+#  assets:
+#    - assets/
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
