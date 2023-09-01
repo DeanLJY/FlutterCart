@@ -2,14 +2,20 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_cart/model/cart_model.dart';
 
+/// Manages the shopping cart functionality, including adding, removing,
+/// and updating items in the cart.
 class CartController {
-
+  /// The Hive box used to store cart items.
   final Box<FlutterCartItem> _cartBox =
       Hive.box<FlutterCartItem>('cartBox');
 
+  /// A [ValueListenable] for the cart box, allowing widgets to listen for changes in the cart.
   ValueListenable<Box<FlutterCartItem>> get cartListenable =>
       _cartBox.listenable();
 
+  /// Adds a [FlutterCartItem] to the shopping cart.
+  ///
+  /// If the product is already in the cart, it updates the quantity. If not, it adds a new instance.
   void addToCart(FlutterCartItem item) {
     // Retrieve the existing item using the product ID as the key
     FlutterCartItem? existingItem = _cartBox.get(item.productId);
@@ -46,7 +52,9 @@ class CartController {
     }
   }
 
-  // Function to remove a product from the cart
+  /// Removes a product from the shopping cart.
+  ///
+  /// Returns `true` if the product is successfully removed, `false` if the product is not found in the cart.
   bool removeFromCart(String productId) {
     if (_cartBox.keys.contains(productId)) {
       _cartBox.delete(productId);
@@ -56,6 +64,7 @@ class CartController {
     }
   }
 
+  /// Increments the quantity of a cart item.
   void incrementQuantity(String productId) {
     FlutterCartItem? item = _cartBox.get(productId);
     if (item != null) {
@@ -64,6 +73,9 @@ class CartController {
     }
   }
 
+  /// Decrements the quantity of a cart item.
+  ///
+  /// Optionally, removes the item from the cart if the quantity becomes 1.
   void decrementQuantity(String productId) {
     FlutterCartItem? item = _cartBox.get(productId);
     if (item != null) {
@@ -77,6 +89,7 @@ class CartController {
     }
   }
 
+  /// Calculates the total price of all items in the shopping cart.
   double calculateTotalPrice() {
     double total = 0;
     for (var i = 0; i < _cartBox.length; i++) {
@@ -85,15 +98,19 @@ class CartController {
     return total;
   }
 
+  /// Gets the total number of items in the shopping cart.
   int getCartItemCount() {
     return _cartBox.length;
   }
 
+  /// Checks if a product with the given [productId] exists in the shopping cart.
   bool isItemExistsInCart(String productId) {
     return _cartBox.keys.contains(productId);
   }
 
-  // Function to remove a product from the cart
+  /// Removes a product from the cart using the [productId].
+  ///
+  /// Returns `true` if the product is successfully removed, `false` if the product is not found in the cart.
   bool removeProduct(String productId) {
     if (_cartBox.keys.contains(productId)) {
       _cartBox.delete(productId);
@@ -103,7 +120,7 @@ class CartController {
     }
   }
 
-  // Function to get the total price from the cart
+  /// Gets the total price of all items in the shopping cart.
   double getTotalPrice() {
     var box = Hive.box<FlutterCartItem>('cartBox');
 
@@ -118,7 +135,19 @@ class CartController {
     return totalAmount;
   }
 
-  // Function to clear all items from the cart
+  /// Retrieves a list of [FlutterCartItem] from the shopping cart.
+  List<FlutterCartItem> getCartItems() {
+    List<FlutterCartItem> cartItems = [];
+
+    for (var i = 0; i < _cartBox.length; i++) {
+      FlutterCartItem item = _cartBox.getAt(i)!;
+      cartItems.add(item);
+    }
+
+    return cartItems;
+  }
+
+  /// Clears all items from the shopping cart.
   void clearCart() {
     _cartBox.clear();
   }
