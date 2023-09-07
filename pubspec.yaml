@@ -1,6 +1,6 @@
 name: flutter_cart
 description: "Effortlessly manage and persist shopping cart data in your Flutter app with this comprehensive package. Simplify local storage and enhance the shopping experience for your users."
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/falloutone/fluttercart
 
 environment:
